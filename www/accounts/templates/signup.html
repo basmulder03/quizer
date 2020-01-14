@@ -2,12 +2,15 @@
 <link rel="stylesheet" href='{% static "css/register.css" %}'> {% endblock styles %} {% block header %}
 <h1 class="display-3 text-center">REGISTER</h1>{% endblock header %} {% block content %}
 <form class="card card-block bg-faded">
+
+    {% if form.errors %} {% for error in errors %} {{ error }} {% endfor %} {% endif %}
+
     <div class="m-5">
         <div class="row justify-content-md-center">
             <div class="col col-sm-6">
                 <div class="form-group">
-                    <label for="username" class="bmd-label-floating">Username</label>
-                    <input type="text" class="form-control" id="username" autocomplete="username" required autofocus />
+                    <label for="id_username" class="bmd-label-floating">Username</label>
+                    <input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username" class="form-control">
                 </div>
             </div>
         </div>
@@ -43,6 +46,6 @@
         </div>
     </div>
 </form>
-{% endblock content %} {% block scripts %}
+{{ form }} {% endblock content %} {% block scripts %}
 <script src="{% static 'js/register.js' %}"></script>
 {% endblock scripts %}
