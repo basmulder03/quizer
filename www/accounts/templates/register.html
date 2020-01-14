@@ -1,16 +1,28 @@
 {% extends "base.html" %} {% load static %} {% block styles %}
 <link rel="stylesheet" href='{% static "css/register.css" %}'> {% endblock styles %} {% block header %}
 <h1 class="display-3 text-center">REGISTER</h1>{% endblock header %} {% block content %}
-<form class="card card-block bg-faded">
-
-    {% if form.errors %} {% for error in errors %} {{ error }} {% endfor %} {% endif %}
-
+<form class="card card-block bg-faded" method="POST" novalidate>
+    {% csrf_token %}
     <div class="m-5">
         <div class="row justify-content-md-center">
             <div class="col col-sm-6">
-                <div class="form-group">
+                <div class="form-group is-focused">
                     <label for="id_username" class="bmd-label-floating">Username</label>
-                    <input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username" class="form-control">
+                    {{ form.username }}
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col col-sm-3">
+                <div class="form-group">
+                    <label for="first_name" class="bmd-label-floating">Firstname</label>
+                    {{ form.first_name }}
+                </div>
+            </div>
+            <div class="col col-sm-3">
+                <div class="form-group">
+                    <label for="last_name" class="bmd-label-floating">Lastname</label>
+                    {{ form.last_name }}
                 </div>
             </div>
         </div>
@@ -18,7 +30,7 @@
             <div class="col col-sm-6">
                 <div class="form-group">
                     <label for="email" class="bmd-label-floating">Email</label>
-                    <input type="email" class="form-control" id="email" autocomplete="email" required />
+                    {{ form.email }}
                 </div>
             </div>
         </div>
@@ -26,15 +38,15 @@
             <div class="col col-sm-6">
                 <div class="form-group">
                     <label for="password" class="bmd-label-floating">Password</label>
-                    <input type="password" class="form-control" id="password" autocomplete="off" required minlength="8" maxlength="32" />
+                    {{ form.password1 }}
                 </div>
             </div>
         </div>
         <div class="row justify-content-md-center">
             <div class="col col-sm-6">
                 <div class="form-group">
-                    <label for="password_again" class="bmd-label-floating">Password Again</label>
-                    <input type="password" class="form-control" id="password_again" autocomplete="off" required minlength="8" maxlength="32" />
+                    <label for="password_again" class="bmd-label-floating">Repeat Password</label>
+                    {{ form.password2 }}
                 </div>
             </div>
         </div>
@@ -45,7 +57,6 @@
             </div>
         </div>
     </div>
-</form>
-{{ form }} {% endblock content %} {% block scripts %}
+</form> {% endblock content %} {% block scripts %}
 <script src="{% static 'js/register.js' %}"></script>
 {% endblock scripts %}
