@@ -12,10 +12,14 @@
     <title>{% block title %}QUIZER{% endblock title %}</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{% static 'vendor\bootstrap\css\bootstrap.min.css' %}" rel="stylesheet">
+    <!-- <link href="{% static 'vendor\bootstrap\css\bootstrap.min.css' %}" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+
+    <!-- Materialize -->
+    <!-- <link rel="stylesheet" href="{% static 'vendor\materialize\css\materialize.css' %}"> -->
 
     <!-- Custom styles for this template -->
-    <link href="{% static 'css/heroicfeatures.css' %}" rel="stylesheet">
+    <link href="{% static 'css/heroicfeatures.css' %}" rel="stylesheet"> {% block styles %} {% endblock styles %}
 
 </head>
 
@@ -25,7 +29,7 @@
     {% include 'navbar.html' %}
 
     <!-- Page Content -->
-    <div class="container">
+    <div class="container p-5">
         <!-- Jumbotron Header -->
         <header class="jumbotron my-4">
             {% block header %}
@@ -44,12 +48,18 @@
         <!-- /.container -->
     </div>
     <!-- Footer -->
-    {% include 'footer.html' %}
-
+    {% include 'footer.html' %} {% endblock body %}
     <!-- Bootstrap core JavaScript -->
-    <script src="{% static 'vendor\jquery\jquery.min.js' %}"></script>
-    <script src="{% static 'vendor\bootstrap\js\bootstrap.min.js' %}"></script>
-    {% endblock body %}
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $('body').bootstrapMaterialDesign();
+        });
+    </script>
+    <!-- <script src="{% static 'vendor\materialize\js\materialize.js' %}"></script> -->
+    {% block scripts %} {% endblock scripts %}
 </body>
 
 </html>

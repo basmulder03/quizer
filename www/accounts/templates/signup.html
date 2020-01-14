@@ -1,9 +1,48 @@
-{% extends "base.html" %} {% block header %} {% endblock header %} {% block content %}
-<div class="container">
-    <h2>Sign Up</h2>
-    <form method="POST" novalidate>
-        {% csrf_token %} {% include "form.html" %}
-        <button type="submit" class="btn btn-primary">Create an Account</button>
-    </form>
-</div>
-{% endblock content %}
+{% extends "base.html" %} {% load static %} {% block styles %}
+<link rel="stylesheet" href='{% static "css/register.css" %}'> {% endblock styles %} {% block header %}
+<h1 class="display-3 text-center">REGISTER</h1>{% endblock header %} {% block content %}
+<form class="card card-block bg-faded">
+    <div class="m-5">
+        <div class="row justify-content-md-center">
+            <div class="col col-sm-6">
+                <div class="form-group">
+                    <label for="username" class="bmd-label-floating">Username</label>
+                    <input type="text" class="form-control" id="username" autocomplete="username" required autofocus />
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col col-sm-6">
+                <div class="form-group">
+                    <label for="email" class="bmd-label-floating">Email</label>
+                    <input type="email" class="form-control" id="email" autocomplete="email" required />
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col col-sm-6">
+                <div class="form-group">
+                    <label for="password" class="bmd-label-floating">Password</label>
+                    <input type="password" class="form-control" id="password" autocomplete="off" required minlength="8" maxlength="32" />
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col col-sm-6">
+                <div class="form-group">
+                    <label for="password_again" class="bmd-label-floating">Password Again</label>
+                    <input type="password" class="form-control" id="password_again" autocomplete="off" required minlength="8" maxlength="32" />
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col col-sm-6">
+                <button type="submit" class="btn btn-outline-primary">Register</button>
+                <button type="reset" class="btn btn-outline-danger">Reset</button>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock content %} {% block scripts %}
+<script src="{% static 'js/register.js' %}"></script>
+{% endblock scripts %}
