@@ -2,40 +2,42 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.db import models
+from django.core.validators import (
+    validate_email,
+    password
+)
 
 
 class RegistrationForm(UserCreationForm):
-    username = forms.CharField()
-    username.widget.attrs = {
+    username = forms.CharField(min_length=4,widget=forms.TextInput(attrs={
         'class': 'form-control',
-    }
+        'required': True
+    }))
 
-    first_name = forms.CharField()
-    first_name.widget.attrs = {
-        'class': 'form-control'
-    }
+    first_name = forms.CharField(min_length=2, widget=forms.TextInput(attrs={
+        'class': 'form-control',
+        'required': True
+    }))
 
-    last_name = forms.CharField()
-    last_name.widget.attrs = {
-        'class': 'form-control'
-    }
+    last_name = forms.CharField(min_length=2, widget=forms.TextInput(attrs={
+        'class': 'form-control',
+        'required': True
+    }))
 
-    email = forms.EmailField()
-    email.widget.attrs = {
-        'class': 'form-control'
-    }
+    email = forms.EmailField(min_length=6, widget=forms.EmailInput(attrs={
+        'class': 'form-control',
+        'required': True
+    }))
 
-    password1 = forms.CharField()
-    password1.widget = forms.PasswordInput()
-    password1.widget.attrs = {
-        'class': 'form-control'
-    }
+    password1 = forms.CharField(min_length=6, widget=forms.PasswordInput(attrs={
+        'class': 'form-control',
+        'required': True
+    }))
 
-    password2 = forms.CharField()
-    password2.widget = forms.PasswordInput()
-    password2.widget.attrs = {
-        'class': 'form-control'
-    }
+    password2 = forms.CharField(min_length=6, widget=forms.PasswordInput(attrs={
+        'class': 'form-control',
+        'required': True
+    }))
 
     class Meta:
         model = User

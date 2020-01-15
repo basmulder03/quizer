@@ -10,8 +10,7 @@ from django.views.generic import FormView
 class RegisterView(FormView):
     form_class = RegistrationForm
     template_name = 'register.html'
-    success_url = '/'
 
     def post(self, request):
         if not User.objects.get(username=request.POST.get('username')).exists():
-            return render(request, '404.html', {})
+            return render(request, '404.html', form_class)
